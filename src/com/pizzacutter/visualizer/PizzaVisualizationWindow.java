@@ -150,8 +150,8 @@ public class PizzaVisualizationWindow extends JFrame {
         static int basicWidth = 400;
         static int basicLength = 400;
     
-        static int startX = 30;
-        static int startY = 30;
+        private int startX = 30;
+        private int startY = 30;
         
         private int width = basicWidth;
         private int length = basicLength;
@@ -163,6 +163,8 @@ public class PizzaVisualizationWindow extends JFrame {
         private List<Color> colors = null;
     
         public PizzaGrid() {
+            this.startX = this.getX() + 30;
+            this.startY = this.getY() + 30;
         }
     
         public void setStartX(int startX) {
@@ -189,8 +191,8 @@ public class PizzaVisualizationWindow extends JFrame {
         }
         
         public void setSize(int width, int length) {
-            this.width = width*squareSize;
-            this.length = length*squareSize;
+            this.width = width*this.squareSize;
+            this.length = length*this.squareSize;
             this.colors = new ArrayList<Color>();
             setColors(width, length);
         }
@@ -228,12 +230,12 @@ public class PizzaVisualizationWindow extends JFrame {
                 g.drawRect(startX, startY, length, width);
     
                 // draw line dividors
-                for (int i = startY; i <= width; i += squareSize) {
-                    g.drawLine(startX, i+squareSize, length+squareSize, i+squareSize);
+                for (int i = startY; i < startY + width; i += squareSize) {
+                    g.drawLine(startX, i+squareSize, startY + length, i+squareSize);
                 }
                 
-                for (int i = startX; i <= length; i += squareSize) {
-                    g.drawLine(i+squareSize, startY, i+squareSize, width+squareSize);
+                for (int i = startX; i < startX + length; i += squareSize) {
+                    g.drawLine(i+squareSize, startY, i+squareSize, startY + width);
                 }
             }
     
