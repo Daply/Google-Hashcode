@@ -6,21 +6,13 @@ public class Solver {
     
     public static void solve(String fileName) throws IOException {
         PizzaCutter pizzaCutter = new PizzaCutter();
-        pizzaCutter.readPizza(fileName);
-        pizzaCutter.cutPizza();
-        System.out.println("Slices: ");
-        System.out.println(pizzaCutter.getSlicesResult());
-        System.out.println("Whole pizza square: " + pizzaCutter.getCols()*pizzaCutter.getRows());
-        System.out.println("Slices square: " + pizzaCutter.getTotalSlicesSquare());
+        pizzaCutter.run(fileName);
+        pizzaCutter.printResult();
     }
     
-    public static void solveTest() throws IOException {
+    public static void visualization() throws IOException {
         PizzaCutter pizzaCutter = new PizzaCutter();
-        pizzaCutter.testFiles();
-        System.out.println("Slices: ");
-        System.out.println(pizzaCutter.getSlicesResult());
-        System.out.println("Whole pizza square: " + pizzaCutter.getCols()*pizzaCutter.getRows());
-        System.out.println("Slices square: " + pizzaCutter.getTotalSlicesSquare());
+        pizzaCutter.visualizeRun();
     }
     
     public static void main(String args[]) throws Exception {
@@ -36,7 +28,7 @@ public class Solver {
         // big file
         //solve("src//com//pizzacutter//data//d_big.in");
         
-        solveTest();
+        visualization();
     }
     
     

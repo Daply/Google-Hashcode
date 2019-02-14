@@ -14,7 +14,9 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.pizzacutter.visualizer.Visualizer;
+import javax.swing.UIManager;
+
+import com.pizzacutter.visualizer.PizzaVisualizationWindow;
 
 public class PizzaCutter {
     
@@ -66,28 +68,39 @@ public class PizzaCutter {
      * for test 
      * visualization of algorithm
      */
-    private boolean visualize = true;
-    private Visualizer visualizer = null;
+    private boolean visualize = false;
+    private PizzaVisualizationWindow visualizer = null;
     
     
     public PizzaCutter() {
         this.minimalElements = new ArrayList<Slice> ();
         this.slicesResult = new ArrayList<Slice> ();
-        // for test only
-        if (visualize) {
-            this.visualizer = new Visualizer();
-        }
     }
     
-    public void testFiles () throws IOException {
-        // for test only
-        if (visualize) {
-            while(!this.visualizer.getFileName().isEmpty()) {
-                readPizza(this.visualizer.getFileName());
-                this.visualizer.addPizzaGrid(this.pizza);
-                cutPizza();
-            }
-        }
+    public void visualizeRun () throws IOException {  
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception evt) {}
+        // Create an instance of the test application
+        this.visualizer = new PizzaVisualizationWindow();
+        this.visualizer.setPizzaCutter(this);
+        this.visualizer.setSize(800, 800);
+        //mainFrame.pack();
+        this.visualizer.setVisible( true );
+        this.visualize = true;
+    }
+    
+    public void run (String fileName) throws IOException {
+        clearData();
+        readPizza(fileName);
+        cutPizza();
+    }
+    
+    public void printResult () throws IOException {
+        System.out.println("Slices: ");
+        System.out.println(getSlicesResult());
+        System.out.println("Whole pizza square: " + getCols()*getRows());
+        System.out.println("Slices square: " + getTotalSlicesSquare());
     }
     
     public void readPizza(String fileName) throws IOException {
@@ -134,8 +147,8 @@ public class PizzaCutter {
             this.minimalElement = 0;
         
         // for test only
-        if (visualize) {
-            this.visualizer.addPizzaGrid(this.pizza);
+        if (this.visualize) {
+            this.visualizer.setPizza(this.pizza);
         }
     }
  
@@ -342,7 +355,7 @@ public class PizzaCutter {
                 }
                 
                 // for test only
-                if (visualize) {
+                if (this.visualize) {
                     this.visualizer.redraw();
                 }
             }
@@ -684,6 +697,28 @@ public class PizzaCutter {
     public void setTotalSlicesSquare(int totalSlicesSquare) {
         this.totalSlicesSquare = totalSlicesSquare;
     }
+
+    public PizzaVisualizationWindow getVisualizer() {
+        return visualizer;
+    }
+
+    public void setVisualizer(PizzaVisualizationWindow visualizer) {
+        this.visualizer = visualizer;
+        this.visualize = true;
+    }
     
+    public void clearData() {
+        this.pizza = null;
+        this.rows = 0;
+        this.cols = 0;
+        this.minimumNumberOfEachElement = 0;
+        this.maximumNumberOfCells = 0;
+        this.countMushrooms = 0;
+        this.countTomatoes = 0;
+        this.minimalElement = 0;
+        this.totalSlicesSquare = 0;
+        this.minimalElements = new ArrayList<Slice> ();
+        this.slicesResult = new ArrayList<Slice> ();
+    }
     
 }
