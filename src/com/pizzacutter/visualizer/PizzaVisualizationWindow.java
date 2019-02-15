@@ -191,6 +191,22 @@ public class PizzaVisualizationWindow extends JFrame {
         }
         
         public void setSize(int width, int length) {
+            if (width*this.squareSize < 100 ||
+                    length*this.squareSize < 100) {
+                this.squareSize = 20;
+            }
+            if (width*this.squareSize > 1000 ||
+                    length*this.squareSize > 1000) {
+                this.squareSize = 5;
+            }
+            if (width*this.squareSize > 2000 ||
+                    length*this.squareSize > 2000) {
+                this.squareSize = 1;
+            }
+            if (width*this.squareSize > 5000 ||
+                    length*this.squareSize > 5000) {
+                this.squareSize = 1;
+            }
             this.width = width*this.squareSize;
             this.length = length*this.squareSize;
             this.colors = new ArrayList<Color>();
@@ -254,7 +270,7 @@ public class PizzaVisualizationWindow extends JFrame {
         // Create an instance of the test application
         PizzaCutter pizzaCutter = new PizzaCutter();
         PizzaVisualizationWindow mainFrame = new PizzaVisualizationWindow();
-        pizzaCutter.setVisualizer(mainFrame);
+        //pizzaCutter.setVisualizer(mainFrame);
         mainFrame.setPizzaCutter(pizzaCutter);
         mainFrame.setSize(800, 800);
         //mainFrame.pack();

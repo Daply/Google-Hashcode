@@ -1,9 +1,12 @@
 package com.pizzacutter;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,8 +71,8 @@ public class PizzaCutter {
      * for test 
      * visualization of algorithm
      */
-    private boolean visualize = false;
-    private PizzaVisualizationWindow visualizer = null;
+    //private boolean visualize = false;
+    //private PizzaVisualizationWindow visualizer = null;
     
     
     public PizzaCutter() {
@@ -77,23 +80,37 @@ public class PizzaCutter {
         this.slicesResult = new ArrayList<Slice> ();
     }
     
-    public void visualizeRun () throws IOException {  
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (Exception evt) {}
-        // Create an instance of the test application
-        this.visualizer = new PizzaVisualizationWindow();
-        this.visualizer.setPizzaCutter(this);
-        this.visualizer.setSize(800, 800);
-        //mainFrame.pack();
-        this.visualizer.setVisible( true );
-        this.visualize = true;
-    }
+//    public void visualizeRun () throws IOException {  
+//        try {
+//            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+//        } catch (Exception evt) {}
+//        // Create an instance of the test application
+//        this.visualizer = new PizzaVisualizationWindow();
+//        this.visualizer.setPizzaCutter(this);
+//        this.visualizer.setSize(800, 800);
+//        //mainFrame.pack();
+//        this.visualizer.setVisible( true );
+//        this.visualize = true;
+//    }
     
     public void run (String fileName) throws IOException {
         clearData();
         readPizza(fileName);
         cutPizza();
+    }
+    
+    public void printFileResult () throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src//result.txt"));
+        
+        writer.write(this.slicesResult.size() + "\n");
+        for (Slice slice: this.slicesResult) {
+            writer.write(slice.getStartElement().getI() + " " +
+                    slice.getStartElement().getJ() + " " +
+                    slice.getEndElement().getI() + " " +
+                    slice.getEndElement().getJ() + "\n");
+        }
+        
+        writer.close();
     }
     
     public void printResult () throws IOException {
@@ -147,9 +164,9 @@ public class PizzaCutter {
             this.minimalElement = 0;
         
         // for test only
-        if (this.visualize) {
-            this.visualizer.setPizza(this.pizza);
-        }
+//        if (this.visualize) {
+//            this.visualizer.setPizza(this.pizza);
+//        }
     }
  
     private void addSurroundings() {
@@ -355,9 +372,9 @@ public class PizzaCutter {
                 }
                 
                 // for test only
-                if (this.visualize) {
-                    this.visualizer.redraw();
-                }
+//                if (this.visualize) {
+//                    this.visualizer.redraw();
+//                }
             }
             sliceMark++;
         }
@@ -698,14 +715,14 @@ public class PizzaCutter {
         this.totalSlicesSquare = totalSlicesSquare;
     }
 
-    public PizzaVisualizationWindow getVisualizer() {
-        return visualizer;
-    }
-
-    public void setVisualizer(PizzaVisualizationWindow visualizer) {
-        this.visualizer = visualizer;
-        this.visualize = true;
-    }
+//    public PizzaVisualizationWindow getVisualizer() {
+//        return visualizer;
+//    }
+//
+//    public void setVisualizer(PizzaVisualizationWindow visualizer) {
+//        this.visualizer = visualizer;
+//        this.visualize = true;
+//    }
     
     public void clearData() {
         this.pizza = null;

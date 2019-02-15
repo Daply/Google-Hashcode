@@ -7,13 +7,13 @@ public class Solver {
     public static void solve(String fileName) throws IOException {
         PizzaCutter pizzaCutter = new PizzaCutter();
         pizzaCutter.run(fileName);
-        pizzaCutter.printResult();
+        pizzaCutter.printFileResult();
     }
     
-    public static void visualization() throws IOException {
-        PizzaCutter pizzaCutter = new PizzaCutter();
-        pizzaCutter.visualizeRun();
-    }
+//    public static void visualization() throws IOException {
+//        PizzaCutter pizzaCutter = new PizzaCutter();
+//        pizzaCutter.visualizeRun();
+//    }
     
     public static void main(String args[]) throws Exception {
         // example file
@@ -26,9 +26,9 @@ public class Solver {
         //solve("src//com//pizzacutter//data//c_medium.in");
         
         // big file
-        //solve("src//com//pizzacutter//data//d_big.in");
+        solve("src//com//pizzacutter//data//d_big.in");
         
-        visualization();
+        //visualization();
     }
     
     
