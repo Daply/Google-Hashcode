@@ -82,6 +82,7 @@ public class Solver {
         double hours = 0;
         if (seconds > 60) {
             minutes = (double)seconds/60;
+			seconds = seconds%60;
         }
         if (minutes > 60) {
             hours = (double)minutes/60;
