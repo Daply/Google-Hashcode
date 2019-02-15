@@ -13,6 +13,11 @@ import javax.swing.*;
 import com.pizzacutter.Element;
 import com.pizzacutter.PizzaCutter;
 
+/**
+ * 
+ * @author Pleshchankova Daria
+ *
+ */
 public class PizzaVisualizationWindow extends JFrame {
     
     private PizzaCutter pizzaCutter = null;

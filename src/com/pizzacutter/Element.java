@@ -1,5 +1,10 @@
 package com.pizzacutter;
 
+/**
+ * 
+ * @author Pleshchankova Daria
+ *
+ */
 public class Element{
 
     /**

@@ -21,6 +21,11 @@ import javax.swing.UIManager;
 
 import com.pizzacutter.visualizer.PizzaVisualizationWindow;
 
+/**
+ * 
+ * @author Pleshchankova Daria
+ *
+ */
 public class PizzaCutter {
     
     /**

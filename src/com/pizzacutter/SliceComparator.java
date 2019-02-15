@@ -2,6 +2,11 @@ package com.pizzacutter;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Pleshchankova Daria
+ *
+ */
 public class SliceComparator implements Comparator<Slice>{
     @Override
     public int compare(Slice o1, Slice o2) {

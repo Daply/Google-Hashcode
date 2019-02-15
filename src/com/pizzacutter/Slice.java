@@ -1,5 +1,10 @@
 package com.pizzacutter;
 
+/**
+ * 
+ * @author Pleshchankova Daria
+ *
+ */
 public class Slice{
     private int countNumTomatoes = 0;
     private int countNumMushrooms = 0;
